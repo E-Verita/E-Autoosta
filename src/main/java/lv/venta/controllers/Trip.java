@@ -41,58 +41,54 @@ public class Trip {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long idtr;
-	
 
-	// TODO MTM Cities
+	// MTM Cities
 	@ManyToMany
-	@JoinTable(
-	  name = "trip_city_table", 
-	  joinColumns = @JoinColumn(name = "Idtr"), 
-	  inverseJoinColumns = @JoinColumn(name = "Idct")
-	)
+	@ToString.Exclude
+	@JoinTable(name = "trip_city_table", joinColumns = @JoinColumn(name = "Idtr"), inverseJoinColumns = @JoinColumn(name = "Idct"))
 	private Collection<City> cities = new ArrayList<>();
-	
+
 	// MTO ar driver
 	@ManyToOne
 	@JoinColumn(name = "Idd") // PK Driver
 	private Driver driver;
-	
-	
+
 	@NotNull(message = "Ievadiet sākuma datumu un laiku")
 	@Column(name = "Startdatetime")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Future(message = "Brauciena sākumam jābūt nākotnē")
 	private LocalDateTime startdatetime;
 
-	
 	@Column(name = "Duration")
 	@NotNull(message = "Ievadiet brauciena ilgumu")
 	@Positive(message = "Brauciena ilgumam ir jabūt pozitīvam skaitlim")
 	private Float duration;
-	
-	
-	
+
 	// OTM ar Ticket
 	@OneToMany(mappedBy = "trip")
 	@ToString.Exclude
 	private Collection<Ticket> tickets;
 
+	public Trip(ArrayList<City> cities, Driver driver,
+			@NotNull(message = "Ievadiet sākuma datumu un laiku") @Future(message = "Brauciena sākumam jābūt nākotnē") LocalDateTime startdatetime,
+			@NotNull(message = "Ievadiet brauciena ilgumu") @Positive(message = "Brauciena ilgumam ir jabūt pozitīvam skaitlim") Float duration) {
+		this.cities = cities;
+		this.driver = driver;
+		this.startdatetime = startdatetime;
+		this.duration = duration;
+	}
 
-//TODO MTM check -DONE
-	
-
-
-public Trip(Collection<City> cities, Driver driver,
-		@NotNull(message = "Ievadiet sākuma datumu un laiku") @Future(message = "Brauciena sākumam jābūt nākotnē") LocalDateTime startdatetime,
-		@NotNull(message = "Ievadiet brauciena ilgumu") @Positive(message = "Brauciena ilgumam ir jabūt pozitīvam skaitlim") Float duration) {
-	super();
-	this.cities = cities;
-	this.driver = driver;
-	this.startdatetime = startdatetime;
-	this.duration = duration;
-}
-
-
-
+	//MTM - add
+	public void addCity(City inputCity) {
+		if (!cities.contains(inputCity)) {
+			cities.add(inputCity);
+		}
+	}
+	//MTM - delete
+	public void removeCity(City inputCity) {
+		if (cities.contains(inputCity)) {
+			cities.remove(inputCity);
+		}
+	}
 
 }

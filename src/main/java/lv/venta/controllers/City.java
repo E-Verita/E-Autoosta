@@ -48,14 +48,32 @@ public class City {
 	
 	
 	//MTM
+	@ToString.Exclude
 	@ManyToMany(mappedBy = "cities")
 	private Collection<Trip> trips = new ArrayList<>();
+	
+	
 
 	public City(
 			@NotNull @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") @Size(min = 3, max = 25) String title,
 			@NotNull @Pattern(regexp = "^[A-ZĒŪĪĻĶŠĀŽČŅa.-zēūīļķšāžčņ.\\d]+(\\s[A-ZĒŪĪĻĶŠĀŽČŅa-zēūīļķšāžčņ]+)*\\s\\d+[a-zA-Z]?$", message = "Nepareizs adrešu formāts. Adreses paraugs: Lielā iela 5") @Size(min = 6, max = 40) String adressofstation) {
 		this.title = title;
 		this.adressofstation = adressofstation;
+	}
+	
+	
+	//MTM - add
+	public void addTrip(Trip inputTrip) {
+		if (!trips.contains(inputTrip)) {
+			trips.add(inputTrip);
+		}
+	}
+	
+	//MTM - delete
+	public void removeTrip(Trip inputTrip) {
+		if (trips.contains(inputTrip)) {
+			trips.remove(inputTrip);
+		}
 	}
 
 	
