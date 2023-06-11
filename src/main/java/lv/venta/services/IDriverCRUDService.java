@@ -1,4 +1,4 @@
-package lv.venta.services.impl;
+package lv.venta.services;
 
 import java.util.ArrayList;
 
@@ -10,8 +10,7 @@ public interface IDriverCRUDService {
 	ArrayList<Driver> selectAllDriver();
 
 	//selectDriverrById - atgriež vienu šoferi pēc tā id
-	Driver selectDriverrById(long id) throws Exception;
-
+	Driver selectDriverById(long id) throws Exception;
 	
 	//deleteDriverById - dzēš šoferi pēc tā id
 	void deleteDriverById(long id) throws Exception;
@@ -21,6 +20,7 @@ public interface IDriverCRUDService {
 
 	//updateDriverById - rediģē esošo šoferi
 	Driver updateDriverById(long id, String name, String surname, ArrayList<Buscategory> categories) throws Exception;
+
 
 
 }

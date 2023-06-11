@@ -13,11 +13,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 @MappedSuperclass
-@NoArgsConstructor
 @Data
 @ToString
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class Person {
 
