@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lv.venta.controllers.Trip;
+import lv.venta.models.Trip;
 import lv.venta.repos.ITripRepo;
 import lv.venta.services.ITripService;
 

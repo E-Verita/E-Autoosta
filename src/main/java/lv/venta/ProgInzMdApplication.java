@@ -9,23 +9,25 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import lv.venta.controllers.Buscategory;
-import lv.venta.controllers.Cashier;
-import lv.venta.controllers.City;
-import lv.venta.controllers.Driver;
-import lv.venta.controllers.Ticket;
-import lv.venta.controllers.Trip;
+import lv.venta.models.Buscategory;
+import lv.venta.models.Cashier;
+import lv.venta.models.City;
+import lv.venta.models.Driver;
+import lv.venta.models.Ticket;
+import lv.venta.models.Trip;
 import lv.venta.repos.ICashierRepo;
 import lv.venta.repos.ICityRepo;
 import lv.venta.repos.IDriverRepo;
 import lv.venta.repos.ITicketRepo;
 import lv.venta.repos.ITripRepo;
 
+
 @SpringBootApplication
 public class ProgInzMdApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProgInzMdApplication.class, args);
+		
 	}
 	
 	@Bean //izsauksies automātiski, kad startēsies sistēma
@@ -44,7 +46,6 @@ public class ProgInzMdApplication {
 				driverRepo.save(dr2);
 				driverRepo.save(dr3);
 				driverRepo.save(dr4);
-
 
 				//CASHIER
 				Cashier ca1 = new Cashier("Ieva", "Pardevēja");
@@ -92,8 +93,7 @@ public class ProgInzMdApplication {
 				ticketRepo.save(ticket1);
 				ticketRepo.save(ticket2);
 				ticketRepo.save(ticket3);
-
-
+				
 			}
 			
 		};

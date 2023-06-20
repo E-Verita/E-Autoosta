@@ -2,7 +2,7 @@ package lv.venta.services;
 
 import java.util.ArrayList;
 
-import lv.venta.controllers.Trip;
+import lv.venta.models.Trip;
 
 public interface ITripService {
 	//selectAlTripsByCityTitle - atgriež visus tos autobusa reisus, kuri ietver pilsētu, kuras nosaukums ir padots funkcijā kā 	parametrs

@@ -1,9 +1,11 @@
-package lv.venta.controllers;
+package lv.venta.models;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -49,7 +51,8 @@ public class Trip {
 	private Collection<City> cities = new ArrayList<>();
 
 	// MTO ar driver
-	@ManyToOne
+    @OnDelete(action = OnDeleteAction.SET_NULL)
+	@ManyToOne(optional=true) //lai var izdzest Driver, ja Driver ir minets arī trip tabulā
 	@JoinColumn(name = "Idd") // PK Driver
 	private Driver driver;
 

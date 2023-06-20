@@ -2,7 +2,7 @@ package lv.venta.services;
 
 import java.util.ArrayList;
 
-import lv.venta.controllers.Ticket;
+import lv.venta.models.Ticket;
 
 public interface ITicketService {
 	//selectAllChildTickets - atgriež visas bērnu biļetes

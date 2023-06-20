@@ -1,10 +1,14 @@
-package lv.venta.controllers;
+package lv.venta.models;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,28 +26,45 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Table(name = "cashier_table")
+@Table(name = "driver_table")
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-public class Cashier extends Person{
+@ToString(callSuper = true)
+public class Driver extends Person{
+	
 	@Setter(value=AccessLevel.NONE)
-	@Column(name="Idc")
+	@Column(name="Idd")
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long idc;
+	private long idd;
 	
-	//OTM ar Ticket
-	@OneToMany(mappedBy="cashier")
+	//MTM ar Buscategory
 	@ToString.Exclude
-	private Collection <Ticket> tickets;
+	@NotNull 
+	@ElementCollection
+	@CollectionTable(name = "driver_category", joinColumns = @JoinColumn(name = "driver_id"))
+	@Column(name = "Categories")
+	@Enumerated(EnumType.STRING) //EnumType.ORDINAL ja vajag attelot index
+	private Collection<Buscategory> categories;
 	
-	public Cashier(
+	// OTM ar Trip
+	@OneToMany(mappedBy="driver")
+	@ToString.Exclude
+	private Collection <Trip> trips;
+	
+
+	public Driver(
 			@Pattern(regexp = "[A-ZĀČĒĪĶĻŅŠŪŽ]{1}[a-zāčēīķļņšūž\\ ]+", message = "Pirmajam burtam jābūt lielajam") @NotNull @Size(min = 3, max = 15) String name,
-			@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĀČĒĪĶĻŅŠŪŽ]{1}[a-zāčēīķļņšūž\\ ]+", message = "Pirmajam burtam jābūt lielajam") String surname) {
+			@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĀČĒĪĶĻŅŠŪŽ]{1}[a-zāčēīķļņšūž\\ ]+", message = "Pirmajam burtam jābūt lielajam") String surname,
+			@NotNull Collection<Buscategory> categories) {
 		super(name, surname);
+		this.categories = categories;
 	}
+
+
+
+	
 
 }

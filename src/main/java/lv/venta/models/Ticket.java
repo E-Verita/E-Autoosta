@@ -1,4 +1,4 @@
-package lv.venta.controllers;
+package lv.venta.models;
 
 import java.time.LocalDateTime;
 

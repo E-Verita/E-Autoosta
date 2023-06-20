@@ -1,24 +1,25 @@
 package lv.venta.services.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lv.venta.controllers.Buscategory;
-import lv.venta.controllers.Driver;
+import lv.venta.models.Buscategory;
+import lv.venta.models.Driver;
 import lv.venta.repos.IDriverRepo;
-import lv.venta.repos.ITripRepo;
 import lv.venta.services.IDriverCRUDService;
 
 @Service
 public class DriverServiceImplWithDB implements IDriverCRUDService {
-
+	
 	@Autowired
 	private IDriverRepo driverRepo;
+	
 
 	@Override
-	public ArrayList<Driver> selectAllDriver() {
+	public ArrayList<Driver> selectAllDrivers() {
 		return (ArrayList<Driver>) driverRepo.findAll();
 	}
 
@@ -40,14 +41,15 @@ public class DriverServiceImplWithDB implements IDriverCRUDService {
 		}
 	}
 
+
+		
 	@Override
-	public Driver insertNewDriver(String name, String surname, ArrayList<Buscategory> categories) {
-		Driver temp = driverRepo.save(new Driver(name, surname, categories));
-		return temp;
+	public void insertNewDriver(String name, String surname, Collection<Buscategory> categories) {
+		driverRepo.save(new Driver(name, surname, categories));
 	}
 
 	@Override
-	public Driver updateDriverById(long id, String name, String surname, ArrayList<Buscategory> categories)
+	public Driver updateDriverById(long id, String name, String surname, Collection<Buscategory> categories)
 			throws Exception {
 		if (driverRepo.existsById(id)) {
 			Driver updatedDr = driverRepo.findById(id).get(); 
@@ -59,6 +61,7 @@ public class DriverServiceImplWithDB implements IDriverCRUDService {
 			throw new Exception("Nepareizs Id");
 		}
 	}
+
 
 
 

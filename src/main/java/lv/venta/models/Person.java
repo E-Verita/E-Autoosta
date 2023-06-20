@@ -1,4 +1,4 @@
-package lv.venta.controllers;
+package lv.venta.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
@@ -14,7 +14,7 @@ import lombok.ToString;
 
 @MappedSuperclass
 @Data
-@ToString
+//@ToString
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,5 +32,12 @@ public class Person {
 	@Pattern(regexp = "[A-ZĀČĒĪĶĻŅŠŪŽ]{1}[a-zāčēīķļņšūž\\ ]+", message = "Pirmajam burtam jābūt lielajam")
 	@Column(name = "Surname")
 	private String surname;
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", surname=" + surname + "]";
+	}
+	
+	
 
 }
