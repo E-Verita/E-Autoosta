@@ -100,10 +100,17 @@ public class ProgInzMdApplication {
 				Ticket ticket1 = new Ticket(LocalDateTime.now(), trip1, 10.5f, false, ca1);
 				Ticket ticket2 = new Ticket(LocalDateTime.now(), trip2, 8.0f, true, ca2);
 				Ticket ticket3 = new Ticket(LocalDateTime.now(), trip3, 12.75f, false, ca1);
+				Ticket ticket4 = new Ticket(LocalDateTime.now(), trip1, 12.75f, false, ca1);
+				Ticket ticket5 = new Ticket(LocalDateTime.now(), trip2, 12.75f, false, ca1);
+				Ticket ticket6 = new Ticket(LocalDateTime.now(), trip3, 12.75f, false, ca1);
 
 				ticketRepo.save(ticket1);
 				ticketRepo.save(ticket2);
 				ticketRepo.save(ticket3);
+				ticketRepo.save(ticket4);
+				ticketRepo.save(ticket5);
+				ticketRepo.save(ticket6);
+
 				
 			}
 			

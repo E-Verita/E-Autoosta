@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket List</title>
+</head>
+<body>
+    <h1>Ticket List for <span th:text="${searchedElement}"></span></h1>
+    
+    <table>
+        <caption>Ticket Information</caption>
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Trip ID</th>
+                <th>Purchase Date and Time</th>
+                <th>Price</th>
+                <th>Is Child?</th>
+                <th>Cashier</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ticket : ${tickets}">
+                <td th:text="${ticket.idt}"></td>
+                <td th:text="${ticket.trip.idtr}"></td>
+                <td>
+                    <span th:text="${#temporals.format(ticket.purchasedatetime, 'dd/MM/yyyy HH:mm')}"></span>
+                </td>
+                <td th:text="${ticket.price}"></td>
+                <td th:text="${ticket.isChild ? 'Yes' : 'No'}"></td>
+                <td th:text="${ticket.cashier.surname}"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.springframework.org/tags/form">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Ticket Form</title>
+</head>
+<body>
+    <h1>Add Ticket</h1>
+    <form action="/ticket/add" method="post" th:object="${ticket}">
+        <div>
+            <label for="purchasedatetime">Purchase Date and Time:</label>
+            <input type="datetime-local" id="purchasedatetime" th:field="*{purchasedatetime}" required>
+        </div>
+
+      <div>
+    <label for="price">Price:</label>
+    <input type="number" id="price" step="0.01" th:field="*{price}" required>
+	</div>
+
+        <div>
+            <label for="isChild">Is Child:</label>
+            <input type="checkbox" id="isChild" th:field="*{isChild}" >
+        </div>
+
+        <div>
+            <label for="cashier">Cashier:</label>
+            <select id="cashier" th:field="*{cashier}" required>
+                <option value="">Select Cashier</option>
+                <option th:each="cashier : ${cashiers}" th:value="${cashier.idc}" th:text="${cashier.name + ' ' + cashier.surname}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label for="trip">Trip:</label>
+            <select id="trip" th:field="*{trip}" required>
+                <option value="">Select Trip</option>
+                <option th:each="trip : ${trips}" th:value="${trip.idtr}" th:text="${trip.startdatetime + ' - ' + trip.driver.name}"></option>
+            </select>
+        </div>
+
+        <button type="submit">Add Ticket</button>
+    </form>
+</body>
+</html>

@@ -37,7 +37,7 @@ public class Ticket {
 	private long idt;
 	
 	@Column(name = "Purchasedatetime")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")//
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime purchasedatetime;
 	
 	// MTO ar Trip
@@ -53,9 +53,9 @@ public class Ticket {
 	@Max(value = 1000, message = "Cena nevar būt lielāka par 1000")
 	private Float price;
 	
-	@Column(name = "Ischild")
+	@Column(name = "IsChild")
 	@NotNull(message = "Ievadiet pasažiera tipu")
-	private Boolean ischild;
+	private Boolean isChild;
 
 	// MTO ar Cashier
 	@ManyToOne
@@ -64,11 +64,11 @@ public class Ticket {
 
 	public Ticket(LocalDateTime purchasedatetime, Trip trip,
 			@NotNull(message = "Ievadiet cenu") @Min(value = 1, message = "Cena nevar būt mazāka par 1") @Max(value = 1000, message = "Cena nevar būt lielāka par 1000") float price,
-			@NotNull(message = "Ievadiet pasažiera tipu") boolean ischild, Cashier cashier) {
+			@NotNull(message = "Ievadiet pasažiera tipu") boolean isChild, Cashier cashier) {
 		this.purchasedatetime = purchasedatetime;
 		this.trip = trip;
 		this.price = price;
-		this.ischild = ischild;
+		this.isChild = isChild;
 		this.cashier = cashier;
 	}
 	
