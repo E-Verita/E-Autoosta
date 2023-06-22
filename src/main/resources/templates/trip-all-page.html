@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trip List</title>
+</head>
+<body>
+    <h1>Trip List for <span th:text="${searchedElement}"></span></h1>
+    
+    <table>
+        <caption>Trip Information</caption>
+        <thead>
+            <tr>
+                <th>Trip ID</th>
+                <th>Start Date and Time</th>
+                <th>Duration</th>
+                <th>Driver</th>
+                <th>Cities</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="trip : ${trips}">
+                <td th:text="${trip.idtr}"></td>
+                <td>
+                    <span th:text="${#temporals.format(trip.startdatetime, 'dd/MM/yyyy HH:mm')}"></span>
+                </td>
+                <td th:text="${trip.duration}">h</td>
+                <td th:text="${trip.driver.surname}"></td>
+                <td>
+                    <ul>
+                        <li th:each="city : ${trip.cities}" th:text="${city.title}"></li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+</body>
+</html>

@@ -68,7 +68,10 @@ public class ProgInzMdApplication {
 				//TRIPS
 				Trip trip1 = new Trip(new ArrayList<>(Arrays.asList(city1, city2)), dr1, LocalDateTime.now().plusDays(1), 2.5f);
 				Trip trip2 = new Trip(new ArrayList<>(Arrays.asList(city3)), dr2, LocalDateTime.now().plusDays(2), 3.0f);
-				Trip trip3 = new Trip(new ArrayList<>(Arrays.asList(city1, city4, city5)), dr3, LocalDateTime.now().plusDays(10), 1.5f);
+				Trip trip3 = new Trip(new ArrayList<>(Arrays.asList(city1, city4, city5)), dr2, LocalDateTime.now().plusDays(10), 1.5f);
+				Trip trip4 = new Trip(new ArrayList<>(Arrays.asList(city1, city4, city2)), dr1, LocalDateTime.now().plusHours(1), 2.5f);
+				Trip trip5 = new Trip(new ArrayList<>(Arrays.asList(city1, city2, city3)), dr1, LocalDateTime.now().plusHours(2), 2.5f);
+
 			
 				tripRepo.save(trip1);
 				tripRepo.save(trip2);
@@ -80,10 +83,18 @@ public class ProgInzMdApplication {
 				trip3.addCity(city1);
 				trip3.addCity(city4);
 				trip3.addCity(city5);
-			
+				trip4.addCity(city1);
+				trip4.addCity(city4);
+				trip4.addCity(city2);
+				trip5.addCity(city1);
+				trip5.addCity(city2);
+				trip5.addCity(city3);
+
 				tripRepo.save(trip1);
 				tripRepo.save(trip2);
 				tripRepo.save(trip3);
+				tripRepo.save(trip4);
+				tripRepo.save(trip5);
 
 				//TICKETS
 				Ticket ticket1 = new Ticket(LocalDateTime.now(), trip1, 10.5f, false, ca1);
