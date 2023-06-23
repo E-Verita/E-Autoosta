@@ -1,7 +1,24 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<head>
+    <meta charset="UTF-8">
+    <title>All Drivers</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
 <body>
-	<h5>Driver Details:</h5>
+	<nav>
+  <ul>
+    <li><a href="/driver/showAll">All Drivers</a></li>
+    <li><a href="/driver/addNew">Add Driver</a></li>
+    <li><a href="/ticket/showAll/onlyChild">All Child Tickets</a></li>
+    <li><a href="/ticket/add">Add Ticket</a></li>
+    <li><a href="/trip/showAll/today">All Today's Trips</a></li>
+    <li><a href="/trip/showAll">All Trips</a></li>
+  </ul>
+</nav>
+
+    <h1>Driver Details</h1>
+    <div class="container">
 	<p th:text="'ID: ' + ${driver.idd}"></p>
 	<p th:text="'Name: ' + ${driver.name}"></p>
 	<p th:text="'Surname: ' + ${driver.surname}"></p>
@@ -9,6 +26,7 @@
 	<ul>
 		<li th:each="category : ${driver.categories}" th:text="${category}"></li>
 	</ul>
+	</div>
 </body>
 
 </html>

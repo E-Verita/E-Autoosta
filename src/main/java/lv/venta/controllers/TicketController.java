@@ -109,28 +109,26 @@ public class TicketController {
 	
 	@GetMapping("/add")
 	public String showAddTicketForm(Model model) throws Exception {
-		ArrayList<Cashier> cashiers = cashierService.getAllCashiers();
-		ArrayList<Trip> trips = tripService.getAllTrips();
-		model.addAttribute("cashiers", cashiers);
-	    model.addAttribute("trips", trips);
-		model.addAttribute("ticket", new Ticket());
-		return "add-ticket-form";
+	    model.addAttribute("ticket", new Ticket());
+	    model.addAttribute("cashiers", cashierService.getAllCashiers());
+	    model.addAttribute("trips", tripService.getAllTrips());
+	    return "ticket-add-page";
 	}
-	
-	
+
 	@PostMapping("/add")
-	public String addNewTicket(@Valid @ModelAttribute Ticket ticket, BindingResult result, Model model) {
+	public String addNewTicket(@Valid @ModelAttribute Ticket ticket, BindingResult result, Model model) throws Exception {
 	    if (!result.hasErrors()) {
 	        try {
-	        	ticketService.insertNewTicket(ticket.getPurchasedatetime(), ticket.getTrip(), ticket.getPrice(), ticket.getIsChild(), ticket.getCashier());
+	            ticketService.insertNewTicket(ticket.getPurchasedatetime(), ticket.getTrip(), ticket.getPrice(), ticket.getIsChild(), ticket.getCashier());
 	            return "redirect:/ticket/showAll/trip/" + ticket.getTrip().getIdtr();
 	        } catch (Exception e) {
 	            model.addAttribute("error", e.getMessage());
 	            return "error-page";
 	        }
 	    } else {
-	        return "add-ticket-form";
+	        model.addAttribute("cashiers", cashierService.getAllCashiers());
+	        model.addAttribute("trips", tripService.getAllTrips());
+	        return "ticket-add-page";
 	    }
 	}
-	
 }

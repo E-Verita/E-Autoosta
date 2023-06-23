@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Ticket</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/driver/showAll">All Drivers</a></li>
+        <li><a href="/driver/addNew">Add Driver</a></li>
+        <li><a href="/ticket/showAll/onlyChild">All Child Tickets</a></li>
+        <li><a href="/ticket/add">Add Ticket</a></li>
+        <li><a href="/trip/showAll/today">All Today's Trips</a></li>
+        <li><a href="/trip/showAll">All Trips</a></li>
+    </ul>
+</nav>
+
+<h1>Add New Ticket</h1>
+<div class="container">
+    <form action="#" th:action="@{/ticket/add}" th:object="${ticket}" method="post">
+        <table>
+            <tr>
+                <th>Trip:</th>
+                <td>
+                    <select id="trip" th:field="*{trip}" required>
+                        <option value="">Select Trip</option>
+                        <option th:each="trip : ${trips}" th:value="${trip.idtr}" th:text="${trip.startdatetime + ' - ' + trip.driver.name}"></option>
+                    </select>
+                </td>
+                <td th:if="${#fields.hasErrors('trip')}" th:errors="*{trip}"></td>
+            </tr>
+            <tr>
+                <th>Price:</th>
+                <td><input type="number" step="0.01" th:field="*{price}" /></td>
+                <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
+            </tr>
+            <tr>
+                <th>Is Child:</th>
+                <td><input type="checkbox" th:field="*{isChild}" /></td>
+                <td th:if="${#fields.hasErrors('isChild')}" th:errors="*{isChild}"></td>
+            </tr>
+            <tr>
+                <th>Cashier:</th>
+                <td>
+                    <select id="cashier" th:field="*{cashier}" required>
+                        <option th:each="cashier : ${cashiers}" th:value="${cashier.idc}" th:text="${cashier.name + ' ' + cashier.surname}"></option>
+                    </select>
+                </td>
+                <td th:if="${#fields.hasErrors('cashier')}" th:errors="*{cashier}"></td>
+            </tr>
+                       <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Add Ticket</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+
+</body>
+</html>

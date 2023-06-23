@@ -24,11 +24,11 @@ public class Person {
 	@Column(name = "Name")
 	@Pattern(regexp = "[A-ZĀČĒĪĶĻŅŠŪŽ]{1}[a-zāčēīķļņšūž\\ ]+", message = "Pirmajam burtam jābūt lielajam")
 	@NotNull(message = "Ievadiet vārdu")
-	@Size(min = 3, max = 15)
+	@Size(min = 3, max = 15, message = "Tekstam jābūt 3 - 15 rakstzīmes garam")
 	private String name;
 
 	@NotNull(message = "Ievadiet uzvārdu")
-	@Size(min = 3, max = 15)
+	@Size(min = 3, max = 15, message = "Tekstam jābūt 3 - 15 rakstzīmes garam")
 	@Pattern(regexp = "[A-ZĀČĒĪĶĻŅŠŪŽ]{1}[a-zāčēīķļņšūž\\ ]+", message = "Pirmajam burtam jābūt lielajam")
 	@Column(name = "Surname")
 	private String surname;

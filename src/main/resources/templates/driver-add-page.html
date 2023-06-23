@@ -1,4 +1,25 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Add New Driver</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+	<nav>
+  <ul>
+    <li><a href="/driver/showAll">All Drivers</a></li>
+    <li><a href="/driver/addNew">Add Driver</a></li>
+    <li><a href="/ticket/showAll/onlyChild">All Child Tickets</a></li>
+    <li><a href="/ticket/add">Add Ticket</a></li>
+    <li><a href="/trip/showAll/today">All Today's Trips</a></li>
+    <li><a href="/trip/showAll">All Trips</a></li>
+  </ul>
+</nav>
+
+    <h1>Add New Driver</h1>
+    <div class="container">
+
 
 <form action="#" th:action="@{/driver/addNew}" th:object="${driver}" method="post">
     <table>
@@ -19,16 +40,16 @@
                     <option th:each="category : ${T(lv.venta.models.Buscategory).values()}"
                             th:value="${category}" th:text="${category}"></option>
                 </select>
-                <small>Select multiple categories</small>
+                    <small>Select 1 or multiple categories</small>
             </td>
             <td th:if="${#fields.hasErrors('categories')}" th:errors="*{categories}"></td>
         </tr>
         <tr>
-            <td colspan="2">
-                <button type="submit">Add Driver</button>
+            <td colspan="2" align="center">
+                <button type="submit" >Add Driver</button>
             </td>
         </tr>
     </table>
 </form>
-
+</div>
 </html>
